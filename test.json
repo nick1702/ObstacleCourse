@@ -1,0 +1,31 @@
+{
+    "levelName": "test",
+    "floorWidth": 20,
+    "floorLength": 20,
+    "gates": [
+        {
+            "gate_id": 0,
+            "x": 2,
+            "z": 2,
+            "rotation": 0
+        },
+        {
+            "gate_id": 1,
+            "x": 14,
+            "z": 2,
+            "rotation": 135
+        },
+        {
+            "gate_id": 2,
+            "x": 6,
+            "z": 9,
+            "rotation": 180
+        },
+        {
+            "gate_id": 3,
+            "x": 14,
+            "z": 10,
+            "rotation": 0
+        }
+    ]
+}
