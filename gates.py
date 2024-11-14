@@ -1,18 +1,20 @@
 class Gate:
-    def __init__(self, gate_id, x, z, rotation):
+    def __init__(self, gate_id, x, z, rotation, type):
         """
         Initializes a new gate object.
-        
+       
         Parameters:
             gate_id (int): The identifier for the gate.
             x (int): The x-coordinate of the gate.
             z (int): The z-coordinate of the gate.
             rotation (float): The rotation of the gate in degrees.
+            type (int): 0 = normal gate, 1 = step on, 2 = step over.
         """
         self.gate_id = gate_id
         self.x = x
         self.z = z
         self.rotation = rotation
+        self.type = type
 
     def to_dict(self):
         """
@@ -25,7 +27,7 @@ class Gate:
             "gate_id": self.gate_id,
             "x": self.x,
             "z": self.z,
-            "rotation": self.rotation
+            "type": self.type
         }
 
 class LinkedListNode:

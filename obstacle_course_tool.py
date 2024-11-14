@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QFileDialog, QGraphicsPathItem, QGraphicsItemGroup, QAbstractItemView, QPushButton, QHBoxLayout, QListWidget, QListWidgetItem, QSplitter, QApplication, QMainWindow, QGraphicsLineItem, QGraphicsView, QGraphicsScene, QGraphicsRectItem, QVBoxLayout, QWidget, QGraphicsItem, QGraphicsTextItem, QMenuBar, QAction, QInputDialog
+from PyQt5.QtWidgets import QGraphicsEllipseItem, QFileDialog, QGraphicsPathItem, QGraphicsItemGroup, QAbstractItemView, QPushButton, QHBoxLayout, QListWidget, QListWidgetItem, QSplitter, QApplication, QMainWindow, QGraphicsLineItem, QGraphicsView, QGraphicsScene, QGraphicsRectItem, QVBoxLayout, QWidget, QGraphicsItem, QGraphicsTextItem, QMenuBar, QAction, QInputDialog
 from PyQt5.QtGui import QPen, QBrush, QPainterPath
 from PyQt5.QtCore import Qt, QPointF, QLineF
 from gates import Gate, GateLinkedList
@@ -110,28 +110,45 @@ class LevelEditor(QMainWindow):
 
         # Widget for buttons at the bottom of the list column
         self.button_widget = QWidget()
-        self.button_layout = QHBoxLayout()
+        self.button_layout = QVBoxLayout()  # Main vertical layout for multiple rows of buttons
         self.button_widget.setLayout(self.button_layout)
+
+        # First row of buttons
+        self.first_row_layout = QHBoxLayout()
 
         # Add Delete Level button
         self.delete_level_button = QPushButton("Delete Level")
         self.delete_level_button.clicked.connect(self.delete_current_level)
-        self.button_layout.addWidget(self.delete_level_button)
-        
+        self.first_row_layout.addWidget(self.delete_level_button)
+
         # Add Remove Gate button
         self.remove_gate_button = QPushButton("Remove Gate")
         self.remove_gate_button.clicked.connect(self.remove_selected_gate)
-        self.button_layout.addWidget(self.remove_gate_button)
-        
+        self.first_row_layout.addWidget(self.remove_gate_button)
+
+        # Add the first row layout to the main button layout
+        self.button_layout.addLayout(self.first_row_layout)
+
+        # Second row of buttons
+        self.second_row_layout = QHBoxLayout()
+
         # Add Rotate Left button
         self.rotate_left_button = QPushButton("Rotate Left")
         self.rotate_left_button.clicked.connect(self.rotate_gate_left)
-        self.button_layout.addWidget(self.rotate_left_button)
+        self.second_row_layout.addWidget(self.rotate_left_button)
 
         # Add Rotate Right button
         self.rotate_right_button = QPushButton("Rotate Right")
         self.rotate_right_button.clicked.connect(self.rotate_gate_right)
-        self.button_layout.addWidget(self.rotate_right_button)
+        self.second_row_layout.addWidget(self.rotate_right_button)
+
+        # Add Change Type button
+        self.change_type_button = QPushButton("Change Gate Type")
+        self.change_type_button.clicked.connect(self.change_selected_gate_type)
+        self.second_row_layout.addWidget(self.change_type_button)
+
+        # Add the second row layout to the main button layout
+        self.button_layout.addLayout(self.second_row_layout)
 
         # Adding the main layout and gate stack to the splitter
         self.main_widget.setLayout(self.layout)
@@ -144,6 +161,7 @@ class LevelEditor(QMainWindow):
         self.list_layout.addWidget(self.button_widget)
 
         self.splitter.addWidget(self.list_widget_container)
+
 
         # Set the initial sizes of the splitter panes
         self.splitter.setSizes([800, 200])  # Graphical interface will take more space compared to the list
@@ -248,7 +266,8 @@ class LevelEditor(QMainWindow):
                 "gate_id": gate.gate_id,
                 "x": gate.x,
                 "z": gate.z,
-                "rotation": gate.rotation
+                "rotation": gate.rotation,
+                "type": gate.type
             }
             level_data["gates"].append(gate_data)
             current = current.next
@@ -293,7 +312,8 @@ class LevelEditor(QMainWindow):
                     gate_id=gate_data["gate_id"],
                     x=gate_data["x"],
                     z=gate_data["z"],
-                    rotation=gate_data["rotation"]
+                    rotation=gate_data["rotation"],
+                    type=gate_data["type"]
                 )
                 self.gate_list.add_gate(gate)
 
@@ -513,7 +533,7 @@ class LevelEditor(QMainWindow):
         grid_y = y // grid_size
 
         # Create a new Gate object with the grid coordinates
-        gate = Gate(self.gate_counter, grid_x, grid_y, 0)
+        gate = Gate(self.gate_counter, grid_x, grid_y, 0, 0)
         self.gate_list.add_gate(gate)
         # print(f"Gate is at: x = {gate.x}, z = {gate.z}")
 
@@ -536,7 +556,7 @@ class LevelEditor(QMainWindow):
         self.gate_counter += 1
 
         # Add gate to stack list widget with detailed information
-        gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}")
+        gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
         gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
         self.gate_stack_list.addItem(gate_list_item)
 
@@ -598,7 +618,7 @@ class LevelEditor(QMainWindow):
         # Update the list items to reflect any potential changes (e.g., gate IDs)
         self.gate_stack_list.clear()
         for gate in new_gate_order:
-            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}")
+            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
             gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
             self.gate_stack_list.addItem(gate_list_item)
 
@@ -619,7 +639,7 @@ class LevelEditor(QMainWindow):
         while current:
             gate = current.gate
             gate.gate_id = index  # Ensure gate ID is consistent with the new order
-            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}")
+            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
             gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
             self.gate_stack_list.addItem(gate_list_item)
             current = current.next
@@ -723,6 +743,31 @@ class LevelEditor(QMainWindow):
             self.update_gate_rotation(self.selected_gate_item)
             self.refresh_gate_stack_list()
             self.update_arrows()
+            
+    def change_selected_gate_type(self):
+        if not self.selected_gate_item:
+            return  # No gate is selected
+
+        # Cycle through gate types: 0 (normal), 1 (step on), 2 (step over)
+        current_type = self.selected_gate_item.gate.type
+        new_type = (current_type + 1) % 3
+        self.selected_gate_item.gate.type = new_type
+
+        # Remove the current graphical representation of the gate
+        self.scene.removeItem(self.selected_gate_item)
+
+        # Create a new graphical representation for the gate with the updated type
+        grid_size = 20
+        new_gate_item = DraggableGateItem(self.selected_gate_item.gate, grid_size, self.floor_width, self.floor_height, self)
+        new_gate_item.setRotation(self.selected_gate_item.gate.rotation)
+        self.scene.addItem(new_gate_item)
+
+        # Update the selected gate reference
+        self.selected_gate_item = new_gate_item
+
+        # Refresh the gate stack list to reflect the updated gate type
+        self.refresh_gate_stack_list()
+
 
 
 
@@ -867,7 +912,8 @@ class LevelEditor(QMainWindow):
                             "gate_id": gate.gate_id,
                             "x": gate.x,
                             "z": gate.z,
-                            "rotation": gate.rotation
+                            "rotation": gate.rotation,
+                            "type": gate.type
                         }
                         level_data["gates"].append(gate_data)
                         current = current.next
@@ -918,7 +964,8 @@ class LevelEditor(QMainWindow):
                         gate_id=gate_data["gate_id"],
                         x=gate_data["x"],
                         z=gate_data["z"],
-                        rotation=gate_data["rotation"]
+                        rotation=gate_data["rotation"],
+                        type=gate_data["type"]
                     )
                     self.gate_list.add_gate(gate)
 
@@ -972,13 +1019,6 @@ class LevelEditor(QMainWindow):
 
 
 
-
-
-
-
-
-
-
 class DraggableGateItem(QGraphicsItemGroup):
     def __init__(self, gate, grid_size, floor_width, floor_height, editor_ref, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -995,22 +1035,45 @@ class DraggableGateItem(QGraphicsItemGroup):
         self.background.setBrush(QBrush(Qt.transparent))
         self.background.setPen(QPen(Qt.NoPen))  # No border to avoid visual clutter
 
-        # Create two thick bars to represent the gate
-        bar_width = grid_size * 0.25  # Width of each bar (thick)
-        bar_height = grid_size  # Height of each bar (entire grid square height)
+        # Draw the gate based on its type
+        if gate.type == 0:
+            # Default gate (two thick bars)
+            bar_width = grid_size * 0.25  # Width of each bar (thick)
+            bar_height = grid_size  # Height of each bar (entire grid square height)
 
-        # Create the first bar (left side)
-        self.bar1 = QGraphicsRectItem(0, 0, bar_width, bar_height)
-        self.bar1.setBrush(QBrush(Qt.blue))
+            # Create the first bar (left side)
+            self.bar1 = QGraphicsRectItem(0, 0, bar_width, bar_height)
+            self.bar1.setBrush(QBrush(Qt.blue))
 
-        # Create the second bar (right side)
-        self.bar2 = QGraphicsRectItem(grid_size - bar_width, 0, bar_width, bar_height)
-        self.bar2.setBrush(QBrush(Qt.blue))
+            # Create the second bar (right side)
+            self.bar2 = QGraphicsRectItem(grid_size - bar_width, 0, bar_width, bar_height)
+            self.bar2.setBrush(QBrush(Qt.blue))
 
-        # Add the background and bars to the item group
+            # Add bars to the item group
+            self.addToGroup(self.bar1)
+            self.addToGroup(self.bar2)
+
+        elif gate.type == 1:
+            # Step-on gate (draw as a filled circle)
+            self.circle = QGraphicsEllipseItem(0, 0, grid_size, grid_size)
+            self.circle.setBrush(QBrush(Qt.red))
+            self.circle.setPen(QPen(Qt.NoPen))
+            self.addToGroup(self.circle)
+
+        elif gate.type == 2:
+            # Step-over gate (draw as a square shape)
+            self.square = QGraphicsRectItem(0, 0, grid_size, grid_size)
+            self.square.setBrush(QBrush(Qt.blue))
+            self.addToGroup(self.square)
+            # self.line1 = QGraphicsLineItem(0, 0, grid_size-grid_size/2, grid_size-grid_size/2)
+            # self.line1.setPen(QPen(Qt.green, 4))
+            # self.line2 = QGraphicsLineItem(grid_size-grid_size/2, 0, 0, grid_size-grid_size/2)
+            # self.line2.setPen(QPen(Qt.green, 4))
+            # self.addToGroup(self.line1)
+            # self.addToGroup(self.line2)
+
+        # Add the background to the item group (after other elements for easier selection)
         self.addToGroup(self.background)
-        self.addToGroup(self.bar1)
-        self.addToGroup(self.bar2)
 
         # Set the initial position of the entire gate
         self.setPos(gate.x * grid_size, gate.z * grid_size)
@@ -1028,13 +1091,22 @@ class DraggableGateItem(QGraphicsItemGroup):
 
     def set_gate_color(self, color):
         """
-        Sets the color of the gate (both bars).
+        Sets the color of the gate depending on its type.
         
         Parameters:
-            color (QColor): The color to set for the gate bars.
+            color (QColor): The color to set for the gate elements.
         """
-        self.bar1.setBrush(QBrush(color))
-        self.bar2.setBrush(QBrush(color))
+        if hasattr(self, 'bar1') and hasattr(self, 'bar2'):
+            # If the gate has bars, update their color
+            self.bar1.setBrush(QBrush(color))
+            self.bar2.setBrush(QBrush(color))
+        elif hasattr(self, 'circle'):
+            # If the gate is a circle (step-on type), update its color
+            self.circle.setBrush(QBrush(color))
+        elif hasattr(self, 'square') :
+            # If the gate is a cross ("X" shape), update the color of both lines
+            self.square.setBrush(QBrush(color))
+
 
     def mousePressEvent(self, event):
         """
@@ -1086,13 +1158,6 @@ class DraggableGateItem(QGraphicsItemGroup):
         return super().itemChange(change, value)
     
     
-
-
-
-
-
-
-
 
 
 
