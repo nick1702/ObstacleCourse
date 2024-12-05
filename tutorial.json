@@ -1,0 +1,117 @@
+{
+    "courseName": "My Course",
+    "levels": [
+        {
+            "levelName": "tutorial",
+            "floorWidth": 16,
+            "floorLength": 23,
+            "gates": [
+                {
+                    "gate_id": 0,
+                    "x": 1,
+                    "z": 2,
+                    "rotation": 180,
+                    "type": 0
+                },
+                {
+                    "gate_id": 1,
+                    "x": 2,
+                    "z": 6,
+                    "rotation": 180,
+                    "type": 0
+                },
+                {
+                    "gate_id": 2,
+                    "x": 1,
+                    "z": 10,
+                    "rotation": 180,
+                    "type": 0
+                },
+                {
+                    "gate_id": 3,
+                    "x": 4,
+                    "z": 12,
+                    "rotation": 90,
+                    "type": 0
+                },
+                {
+                    "gate_id": 4,
+                    "x": 8,
+                    "z": 11,
+                    "rotation": 45,
+                    "type": 0
+                },
+                {
+                    "gate_id": 5,
+                    "x": 9,
+                    "z": 8,
+                    "rotation": 45,
+                    "type": 1
+                },
+                {
+                    "gate_id": 6,
+                    "x": 12,
+                    "z": 9,
+                    "rotation": 180,
+                    "type": 1
+                },
+                {
+                    "gate_id": 7,
+                    "x": 11,
+                    "z": 13,
+                    "rotation": 225,
+                    "type": 1
+                },
+                {
+                    "gate_id": 8,
+                    "x": 7,
+                    "z": 14,
+                    "rotation": 270,
+                    "type": 1
+                },
+                {
+                    "gate_id": 9,
+                    "x": 3,
+                    "z": 16,
+                    "rotation": 270,
+                    "type": 1
+                },
+                {
+                    "gate_id": 10,
+                    "x": 2,
+                    "z": 12,
+                    "rotation": 0,
+                    "type": 2
+                },
+                {
+                    "gate_id": 11,
+                    "x": 3,
+                    "z": 8,
+                    "rotation": 0,
+                    "type": 2
+                },
+                {
+                    "gate_id": 12,
+                    "x": 4,
+                    "z": 4,
+                    "rotation": 0,
+                    "type": 2
+                },
+                {
+                    "gate_id": 13,
+                    "x": 8,
+                    "z": 2,
+                    "rotation": 90,
+                    "type": 2
+                },
+                {
+                    "gate_id": 14,
+                    "x": 13,
+                    "z": 1,
+                    "rotation": 90,
+                    "type": 2
+                }
+            ]
+        }
+    ]
+}
