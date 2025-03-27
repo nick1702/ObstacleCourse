@@ -125,12 +125,18 @@ class LevelEditor(QMainWindow):
         self.remove_gate_button = QPushButton("Remove Gate")
         self.remove_gate_button.clicked.connect(self.remove_selected_gate)
         self.first_row_layout.addWidget(self.remove_gate_button)
+       
+        #add difficulty button
+        self.change_difficulty_button = QPushButton("Change Difficulty")
+        self.change_difficulty_button.clicked.connect(self.change_selected_gate_difficulty)
+        self.first_row_layout.addWidget(self.change_difficulty_button)
 
         # Add the first row layout to the main button layout
         self.button_layout.addLayout(self.first_row_layout)
 
         # Second row of buttons
         self.second_row_layout = QHBoxLayout()
+
 
         # Add Rotate Left button
         self.rotate_left_button = QPushButton("Rotate Left")
@@ -146,6 +152,7 @@ class LevelEditor(QMainWindow):
         self.change_type_button = QPushButton("Change Gate Type")
         self.change_type_button.clicked.connect(self.change_selected_gate_type)
         self.second_row_layout.addWidget(self.change_type_button)
+        
 
         # Add the second row layout to the main button layout
         self.button_layout.addLayout(self.second_row_layout)
@@ -267,8 +274,10 @@ class LevelEditor(QMainWindow):
                 "x": gate.x,
                 "z": gate.z,
                 "rotation": gate.rotation,
-                "type": gate.type
+                "type": gate.type,
+                "difficulty": gate.difficulty
             }
+
             level_data["gates"].append(gate_data)
             current = current.next
 
@@ -313,7 +322,8 @@ class LevelEditor(QMainWindow):
                     x=gate_data["x"],
                     z=gate_data["z"],
                     rotation=gate_data["rotation"],
-                    type=gate_data["type"]
+                    type=gate_data["type"],
+                    difficulty=gate_data["difficulty"]
                 )
                 self.gate_list.add_gate(gate)
 
@@ -328,7 +338,9 @@ class LevelEditor(QMainWindow):
                 self.scene.addItem(gate_item)
 
                 # Add a label above each gate
-                gate_label = QGraphicsTextItem(f"Gate {gate.gate_id}")
+                roman = self.difficulty_to_roman(gate.difficulty)
+                gate_label = QGraphicsTextItem(f"{gate.gate_id}: {roman}")
+                gate_label.setFlag(QGraphicsItem.ItemIgnoresTransformations, True)
                 gate_label.setParentItem(gate_item)
                 gate_label.setPos(0, -20)
                 gate_label.setScale(0.7)
@@ -527,41 +539,34 @@ class LevelEditor(QMainWindow):
 
 
     def add_gate(self, x, y):
-        # Convert grid position to actual coordinates
         grid_size = 20
         grid_x = x // grid_size
         grid_y = y // grid_size
-
-        # Create a new Gate object with the grid coordinates
-        gate = Gate(self.gate_counter, grid_x, grid_y, 0, 0)
+        # Create a new Gate object with default rotation 0, type 0, and difficulty 1
+        gate = Gate(self.gate_counter, grid_x, grid_y, 0, 0, difficulty=1)
         self.gate_list.add_gate(gate)
-        # print(f"Gate is at: x = {gate.x}, z = {gate.z}")
-
         # Draw the gate on the scene
         gate_item = DraggableGateItem(gate, grid_size, self.floor_width, self.floor_height, self)
         gate_item.set_gate_color(QBrush(Qt.blue))
-        gate_item.setFlag(QGraphicsItem.ItemIsMovable)  # Allow gate to be moved
-        gate_item.setFlag(QGraphicsItem.ItemSendsGeometryChanges)  # Track movement
-        gate_item.setAcceptHoverEvents(True)  # Allow hover events
+        gate_item.setFlag(QGraphicsItem.ItemIsMovable)
+        gate_item.setFlag(QGraphicsItem.ItemSendsGeometryChanges)
+        gate_item.setAcceptHoverEvents(True)
         self.scene.addItem(gate_item)
-
-        # Add a label to the gate to show its identifier
-        gate_label = QGraphicsTextItem(f"Gate {self.gate_counter}")
+        # Create a label with the difficulty (Roman numeral)
+        roman = self.difficulty_to_roman(gate.difficulty)
+        gate_label = QGraphicsTextItem(f"{gate.gate_id}: {roman}")
+        gate_label.setFlag(QGraphicsItem.ItemIgnoresTransformations, True)
         gate_label.setParentItem(gate_item)
-        gate_label.setPos(0, -20)  # Position label directly above the gate
-        gate_label.setScale(0.7)  # Adjust the scale if needed for better readability
+        gate_label.setPos(0, -20)
+        gate_label.setScale(0.7)
         gate_item.label = gate_label
-
-        # Increment gate counter
         self.gate_counter += 1
-
-        # Add gate to stack list widget with detailed information
-        gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
-        gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
+        # Add gate to the list widget with updated label text
+        gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}, difficulty: {roman}")
+        gate_list_item.setData(Qt.UserRole, gate)
         self.gate_stack_list.addItem(gate_list_item)
-
-        # Update the arrows after adding the new gate
         self.update_arrows()
+
 
       
     def on_gate_stack_changed(self):
@@ -606,7 +611,8 @@ class LevelEditor(QMainWindow):
             self.scene.addItem(gate_item)
 
             # Update the label to reflect the new gate ID
-            gate_label = QGraphicsTextItem(f"Gate {gate.gate_id}")
+            roman = self.difficulty_to_roman(gate.difficulty)
+            gate_label = QGraphicsTextItem(f"{gate.gate_id}: {roman}")
             gate_label.setParentItem(gate_item)
             gate_label.setPos(0, -20)  # Position label directly above the gate
             gate_label.setScale(0.7)  # Adjust the scale if needed for better readability
@@ -617,8 +623,9 @@ class LevelEditor(QMainWindow):
 
         # Update the list items to reflect any potential changes (e.g., gate IDs)
         self.gate_stack_list.clear()
+
         for gate in new_gate_order:
-            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
+            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}, difficulty: {roman}")
             gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
             self.gate_stack_list.addItem(gate_list_item)
 
@@ -638,9 +645,10 @@ class LevelEditor(QMainWindow):
         index = 0
         while current:
             gate = current.gate
-            gate.gate_id = index  # Ensure gate ID is consistent with the new order
-            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}")
-            gate_list_item.setData(Qt.UserRole, gate)  # Store the gate object as user data
+            gate.gate_id = index  # Update gate_id if needed
+            roman = self.difficulty_to_roman(gate.difficulty)
+            gate_list_item = QListWidgetItem(f"Gate {gate.gate_id} - x: {gate.x}, z: {gate.z}, rotation: {gate.rotation}, type: {gate.type}, difficulty: {roman}")
+            gate_list_item.setData(Qt.UserRole, gate)
             self.gate_stack_list.addItem(gate_list_item)
             current = current.next
             index += 1
@@ -762,10 +770,36 @@ class LevelEditor(QMainWindow):
         new_gate_item.setRotation(self.selected_gate_item.gate.rotation)
         self.scene.addItem(new_gate_item)
 
-        # Update the selected gate reference
+        # Re-create the label with gate ID and difficulty in Roman numerals
+        roman = self.difficulty_to_roman(new_gate_item.gate.difficulty)
+        label_text = f"{new_gate_item.gate.gate_id}: {roman}"
+        gate_label = QGraphicsTextItem(label_text)
+        gate_label.setFlag(QGraphicsItem.ItemIgnoresTransformations, True)  # Keep label upright
+        gate_label.setParentItem(new_gate_item)
+        gate_label.setPos(0, -20)  # Position above the gate
+        gate_label.setScale(0.7)
+        new_gate_item.label = gate_label
+
+        # If the gate was selected, reapply the selected (green) color
+        new_gate_item.set_gate_color(QBrush(Qt.green))
         self.selected_gate_item = new_gate_item
 
         # Refresh the gate stack list to reflect the updated gate type
+        self.refresh_gate_stack_list()
+
+
+    def change_selected_gate_difficulty(self):
+        if not self.selected_gate_item:
+            return  # No gate is selected
+        # Cycle through difficulty levels: 1 -> 2 -> 3 -> 1
+        current_diff = self.selected_gate_item.gate.difficulty
+        new_diff = (current_diff % 3) + 1
+        self.selected_gate_item.gate.difficulty = new_diff
+        # Update the gate's label to show the new difficulty
+        roman = self.difficulty_to_roman(new_diff)
+        new_text = f"{self.selected_gate_item.gate.gate_id}: {roman}"
+        self.selected_gate_item.label.setPlainText(new_text)
+        # Refresh the gate stack list to update the text there as well
         self.refresh_gate_stack_list()
 
 
@@ -965,7 +999,8 @@ class LevelEditor(QMainWindow):
                         x=gate_data["x"],
                         z=gate_data["z"],
                         rotation=gate_data["rotation"],
-                        type=gate_data["type"]
+                        type=gate_data["type"],
+                        difficulty=gate_data.get("difficulty", 1)
                     )
                     self.gate_list.add_gate(gate)
 
@@ -1014,6 +1049,9 @@ class LevelEditor(QMainWindow):
         self.scene.addItem(self.level_title)
 
 
+    def difficulty_to_roman(self, difficulty):
+        mapping = {1: "I", 2: "II", 3: "III"}
+        return mapping.get(difficulty, "I")
 
 
 
