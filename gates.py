@@ -1,16 +1,19 @@
+## @file gates.py
+## @brief Contains classes for representing individual gates and managing them in a linked list.
+
+## @class Gate
+## @brief Represents a gate in the obstacle course.
+## @details A Gate holds properties such as position (x, z), rotation, type, and difficulty.
 class Gate:
     def __init__(self, gate_id, x, z, rotation, type, difficulty=1):
-        """
-        Initializes a new gate object.
-       
-        Parameters:
-            gate_id (int): The identifier for the gate.
-            x (int): The x-coordinate of the gate.
-            z (int): The z-coordinate of the gate.
-            rotation (float): The rotation of the gate in degrees.
-            type (int): 0 = normal gate, 1 = step on, 2 = step over.
-            difficulty (int): The difficulty rating (1, 2, or 3).
-        """
+        ## @brief Initializes a new Gate object.
+        ## @param gate_id (int) The identifier for the gate.
+        ## @param x (int) The x-coordinate of the gate.
+        ## @param z (int) The z-coordinate of the gate.
+        ## @param rotation (float) The rotation of the gate in degrees.
+        ## @param type (int) The gate type (0: normal, 1: step on, 2: step over).
+        ## @param difficulty (int) The difficulty rating (1, 2, or 3). Defaults to 1.
+        
         self.gate_id = gate_id
         self.x = x
         self.z = z
@@ -19,12 +22,8 @@ class Gate:
         self.difficulty = difficulty
 
     def to_dict(self):
-        """
-        Converts the Gate object to a dictionary representation.
-        
-        Returns:
-            dict: A dictionary containing gate properties.
-        """
+        ## @brief Converts the Gate object to a dictionary representation.
+        ## @return (dict) A dictionary containing the gate properties: gate_id, x, z, rotation, type, and difficulty.
         return {
             "gate_id": self.gate_id,
             "x": self.x,
@@ -34,38 +33,34 @@ class Gate:
             "difficulty": self.difficulty
         }
 
-
+## @class LinkedListNode
+## @brief Node for storing a Gate in a linked list.
+## @details Each node holds a Gate object and a reference to the next node in the list.
 class LinkedListNode:
     def __init__(self, gate):
-        """
-        Initializes a node for use in a linked list.
-        
-        Parameters:
-            gate (Gate): The gate object that this node will hold.
-        """
+        ## @brief Initializes a new LinkedListNode.
+        ## @param gate (Gate) The Gate object that this node will hold.
         self.gate = gate
         self.next = None
 
+
+## @class GateLinkedList
+## @brief A linked list to manage Gate objects.
+## @details Provides methods for adding, inserting, removing, reordering, and converting the list of gates.
 class GateLinkedList:
     from PyQt5.QtWidgets import QGraphicsLineItem
 from PyQt5.QtGui import QPen
 
 class GateLinkedList:
     def __init__(self):
-        """
-        Initializes an empty linked list to hold gate nodes.
-        """
+        ## @brief Initializes an empty GateLinkedList.
         self.head = None
         self.size = 0
         self.arrows = []  # Store QGraphicsLineItem objects for arrows
 
     def add_gate(self, gate):
-        """
-        Adds a gate to the end of the linked list.
-        
-        Parameters:
-            gate (Gate): The gate to add.
-        """
+        ## @brief Adds a gate to the end of the linked list.
+        ## @param gate (Gate) The gate to add.
         new_node = LinkedListNode(gate)
         if not self.head:
             self.head = new_node
@@ -77,13 +72,10 @@ class GateLinkedList:
         self.size += 1
 
     def insert_gate(self, index, gate):
-        """
-        Inserts a gate at the specified index in the linked list.
+        ## @brief Inserts a gate at a specified index in the linked list.
+        ## @param index (int) The position at which to insert the gate.
+        ## @param gate (Gate) The gate to insert.
         
-        Parameters:
-            index (int): The position at which to insert the gate.
-            gate (Gate): The gate to insert.
-        """
         new_node = LinkedListNode(gate)
         if index == 0:
             new_node.next = self.head
@@ -99,12 +91,9 @@ class GateLinkedList:
         self.size += 1
 
     def remove_gate(self, index):
-        """
-        Removes a gate from the linked list at the specified index.
+        ## @brief Removes a gate from the linked list at a specified index.
+        ## @param index (int) The index of the gate to remove.
         
-        Parameters:
-            index (int): The index of the gate to remove.
-        """
         if index == 0:
             if self.head:
                 self.head = self.head.next
@@ -119,13 +108,10 @@ class GateLinkedList:
         self.size -= 1
 
     def change_gate_order(self, old_index, new_index):
-        """
-        Changes the order of a gate by moving it from old_index to new_index.
+        ## @brief Changes the order of a gate by moving it from one index to another.
+        ## @param old_index (int) The current index of the gate.
+        ## @param new_index (int) The new index to move the gate to.
         
-        Parameters:
-            old_index (int): The current index of the gate.
-            new_index (int): The new index to move the gate to.
-        """
         if old_index == new_index or old_index < 0 or new_index < 0 or old_index >= self.size or new_index >= self.size:
             return
 
@@ -145,12 +131,9 @@ class GateLinkedList:
         self.insert_gate(new_index, current.gate)
 
     def to_list(self):
-        """
-        Converts the linked list of gates to a list of dictionaries.
+        ## @brief Converts the linked list of gates to a list of dictionaries.
+        ## @return (list) A list of dictionaries, each representing a gate with updated gate_id.
         
-        Returns:
-            list: A list of dictionaries representing each gate in the linked list.
-        """
         gates = []
         current = self.head
         index = 0
@@ -163,12 +146,9 @@ class GateLinkedList:
         return gates
 
     def print_linked_list(self):
-        """
-        Prints the linked list for debugging purposes.
+        ## @brief Generates a string representation of the linked list for debugging.
+        ## @return (str) A string that concatenates each gate's info in order.
         
-        Returns:
-            str: A string representation of the linked list.
-        """
         current = self.head
         gates_info = []
         while current:

@@ -1,0 +1,492 @@
+\hypertarget{classobstacle__course__tool_1_1_level_editor}{}\doxysection{obstacle\+\_\+course\+\_\+tool.\+Level\+Editor Class Reference}
+\label{classobstacle__course__tool_1_1_level_editor}\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+
+
+Main editor class for creating and editing obstacle courses.  
+
+
+Inheritance diagram for obstacle\+\_\+course\+\_\+tool.\+Level\+Editor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classobstacle__course__tool_1_1_level_editor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a32a181a5cd42c7fa3b87a28ea6b00193}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_af97dfb0ce9b666c56325e13a71f1681b}{init\+UI}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a649480aa98ef42a1533bdb614cd69462}{new\+\_\+course}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aa9f137eecbc5891404a7c3d6c471a1ad}{import\+\_\+course}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_afa4920e0e5b8e5e6210b209dc3cf45ee}{export\+\_\+course}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aef0e5819a49bcfb2e11d0b82ec6152b6}{save\+\_\+current\+\_\+level\+\_\+to\+\_\+course\+\_\+data}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aa5a84017f30a849f52662e49dc5ac72a}{load\+\_\+level\+\_\+from\+\_\+course\+\_\+data}} (self, level\+\_\+name)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a818952fb88ddda37d65b3884276500c0}{draw\+\_\+grid}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_ad0c0c9751decf0d83f11aed948acef03}{update\+\_\+arrows}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a6c97f88eb39c2015e638ff3b6bad046b}{new\+\_\+level}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_ab16d4e91f99fccc7c24b5053cfc31ca5}{load\+\_\+level}} (self, level\+\_\+name)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a5e77d0a853b1e4cbd6930cb8c07e18b3}{delete\+\_\+current\+\_\+level}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a8d815187c1517340fc510d36b86ff9cc}{add\+\_\+gate}} (self, x, y)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aa35baac7262225fa8d4557da8c1f2f2a}{on\+\_\+gate\+\_\+stack\+\_\+changed}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a501f5aa84af1ac0606caf27b2b8f7411}{refresh\+\_\+gate\+\_\+stack\+\_\+list}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a33e16fcc27e3efce4f5ada09d0e1b1ee}{highlight\+\_\+selected\+\_\+gate\+\_\+in\+\_\+list}} (self, selected\+\_\+gate)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a9597eca2fa38862aeee994d2b09f986a}{on\+\_\+gate\+\_\+list\+\_\+selection\+\_\+changed}} (self, current, previous)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a2eef9188e9f67f9e5e75181e59813c35}{remove\+\_\+selected\+\_\+gate}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aaac4bf6c234f5dc2df5f227cbe60650c}{rotate\+\_\+gate\+\_\+left}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_aa1203bae332bb58ba9587989a588b454}{rotate\+\_\+gate\+\_\+right}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a62e9f383e3daa9cc9a0aef4825ba1ce0}{change\+\_\+selected\+\_\+gate\+\_\+type}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a1c2407e615a6006bbb959fe5be902c59}{change\+\_\+selected\+\_\+gate\+\_\+difficulty}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a5c2d821feb58f101e439e1c1788cf1a9}{update\+\_\+gate\+\_\+rotation}} (self, gate\+\_\+item)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a810aa174af9a68230c366371b5e654ff}{event\+Filter}} (self, source, event)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a2bc35152fe68c4226e3fe30e434d3968}{find\+\_\+gate\+\_\+item}} (self, gate)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a891389179d81e75626b87d9a9ffb1c04}{get\+\_\+gate\+\_\+entry\+\_\+exit\+\_\+point}} (self, gate\+\_\+item, entry=True)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a92c44f218ea020f821b0d503c2e26853}{save\+\_\+all\+\_\+levels\+\_\+to\+\_\+json}} (self)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_ad54e3098280d9691379f53c5b946d86c}{load\+\_\+level\+\_\+from\+\_\+json}} (self, level\+\_\+name)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_a58f034b3447d2d9aa3220ff5514d9d5c}{set\+\_\+level\+\_\+title}} (self, level\+\_\+name)
+\item 
+def \mbox{\hyperlink{classobstacle__course__tool_1_1_level_editor_ac92a26c29cb91b8dbe1e0021e72205ad}{difficulty\+\_\+to\+\_\+roman}} (self, difficulty)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a7b645d10664ad87e760f537f6eb02cb4}\label{classobstacle__course__tool_1_1_level_editor_a7b645d10664ad87e760f537f6eb02cb4}} 
+{\bfseries course\+\_\+data}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a456c9f74cb5b55e023ccae318284186a}\label{classobstacle__course__tool_1_1_level_editor_a456c9f74cb5b55e023ccae318284186a}} 
+{\bfseries level\+\_\+title}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a67cdcb42cb4cdadbf7ffd5628e14d543}\label{classobstacle__course__tool_1_1_level_editor_a67cdcb42cb4cdadbf7ffd5628e14d543}} 
+{\bfseries levels\+\_\+menu}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a1dc59fd360e5be46cb6aedd3c2311ac4}\label{classobstacle__course__tool_1_1_level_editor_a1dc59fd360e5be46cb6aedd3c2311ac4}} 
+{\bfseries main\+\_\+widget}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a49a6dc101cd0ef24a62189384e56cd19}\label{classobstacle__course__tool_1_1_level_editor_a49a6dc101cd0ef24a62189384e56cd19}} 
+{\bfseries layout}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a0561175fac4678ba368ea616621878d3}\label{classobstacle__course__tool_1_1_level_editor_a0561175fac4678ba368ea616621878d3}} 
+{\bfseries view}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a0b3b310707ebb2d67554440d3dffe941}\label{classobstacle__course__tool_1_1_level_editor_a0b3b310707ebb2d67554440d3dffe941}} 
+{\bfseries scene}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a20edc3dd49eb2735a83759af73201939}\label{classobstacle__course__tool_1_1_level_editor_a20edc3dd49eb2735a83759af73201939}} 
+{\bfseries gate\+\_\+list}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aee822371dec1795206ec8e90298e2b6d}\label{classobstacle__course__tool_1_1_level_editor_aee822371dec1795206ec8e90298e2b6d}} 
+{\bfseries gate\+\_\+counter}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_afa8436f8fe8f581e8e3fa20874b8a89d}\label{classobstacle__course__tool_1_1_level_editor_afa8436f8fe8f581e8e3fa20874b8a89d}} 
+{\bfseries course\+\_\+created}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a6da73ed8cc70bcd407c5d037b4b80585}\label{classobstacle__course__tool_1_1_level_editor_a6da73ed8cc70bcd407c5d037b4b80585}} 
+{\bfseries selected\+\_\+gate\+\_\+item}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a7a4f9d5ac13b302f2834a26ee4c03df3}\label{classobstacle__course__tool_1_1_level_editor_a7a4f9d5ac13b302f2834a26ee4c03df3}} 
+{\bfseries axis\+\_\+labels}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_accd2a138d1914b937dbce0349a0ddd31}\label{classobstacle__course__tool_1_1_level_editor_accd2a138d1914b937dbce0349a0ddd31}} 
+{\bfseries splitter}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aec2083ef42c7a53fa9aefde2f8025e45}\label{classobstacle__course__tool_1_1_level_editor_aec2083ef42c7a53fa9aefde2f8025e45}} 
+{\bfseries gate\+\_\+stack\+\_\+list}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a4db2a9ad25d58d46493e9e1ad25c5049}\label{classobstacle__course__tool_1_1_level_editor_a4db2a9ad25d58d46493e9e1ad25c5049}} 
+{\bfseries button\+\_\+widget}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a3d749ae28d9b6bdef17214c1b8e72681}\label{classobstacle__course__tool_1_1_level_editor_a3d749ae28d9b6bdef17214c1b8e72681}} 
+{\bfseries button\+\_\+layout}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_acc42114348c085a0deb8f9d4151bd422}\label{classobstacle__course__tool_1_1_level_editor_acc42114348c085a0deb8f9d4151bd422}} 
+{\bfseries first\+\_\+row\+\_\+layout}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a64383e28d8fcfc969b47258cde2c05dd}\label{classobstacle__course__tool_1_1_level_editor_a64383e28d8fcfc969b47258cde2c05dd}} 
+{\bfseries delete\+\_\+level\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a8f7d737423f8ea0a3fba70e18bef02b5}\label{classobstacle__course__tool_1_1_level_editor_a8f7d737423f8ea0a3fba70e18bef02b5}} 
+{\bfseries remove\+\_\+gate\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a7129a00fea5c79e98c954415240d0876}\label{classobstacle__course__tool_1_1_level_editor_a7129a00fea5c79e98c954415240d0876}} 
+{\bfseries change\+\_\+difficulty\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a6b558011d3251d5ecdb74eeb2c0f5fbc}\label{classobstacle__course__tool_1_1_level_editor_a6b558011d3251d5ecdb74eeb2c0f5fbc}} 
+{\bfseries second\+\_\+row\+\_\+layout}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a2f0ebb29a1a0e3db5ab5016d5d657477}\label{classobstacle__course__tool_1_1_level_editor_a2f0ebb29a1a0e3db5ab5016d5d657477}} 
+{\bfseries rotate\+\_\+left\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a1ce64499320de5ee541432e1873f2a97}\label{classobstacle__course__tool_1_1_level_editor_a1ce64499320de5ee541432e1873f2a97}} 
+{\bfseries rotate\+\_\+right\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_ac1066f555363f6ca36110ce8104ef64b}\label{classobstacle__course__tool_1_1_level_editor_ac1066f555363f6ca36110ce8104ef64b}} 
+{\bfseries change\+\_\+type\+\_\+button}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a7f1867466d4c3885fbfe35d01114edad}\label{classobstacle__course__tool_1_1_level_editor_a7f1867466d4c3885fbfe35d01114edad}} 
+{\bfseries list\+\_\+widget\+\_\+container}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a0c7cd8a7b63b36b946e1264f76dd080f}\label{classobstacle__course__tool_1_1_level_editor_a0c7cd8a7b63b36b946e1264f76dd080f}} 
+{\bfseries list\+\_\+layout}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a68f99c90d17de19e862a4ab2b8252bd5}\label{classobstacle__course__tool_1_1_level_editor_a68f99c90d17de19e862a4ab2b8252bd5}} 
+{\bfseries floor\+\_\+width}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a4f3f7d3239c29fad1820ae98f9b91b46}\label{classobstacle__course__tool_1_1_level_editor_a4f3f7d3239c29fad1820ae98f9b91b46}} 
+{\bfseries floor\+\_\+height}
+\item 
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aa06ea63e8916307f4635e852593c87ff}\label{classobstacle__course__tool_1_1_level_editor_aa06ea63e8916307f4635e852593c87ff}} 
+{\bfseries level\+\_\+name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main editor class for creating and editing obstacle courses. 
+
+Provides methods to create new courses and levels, import/export JSON data, add and modify gates, and update the visual scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a32a181a5cd42c7fa3b87a28ea6b00193}\label{classobstacle__course__tool_1_1_level_editor_a32a181a5cd42c7fa3b87a28ea6b00193}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Initializes the LevelEditor.
+@details Sets up the window title, geometry, course data, and initializes the UI.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a8d815187c1517340fc510d36b86ff9cc}\label{classobstacle__course__tool_1_1_level_editor_a8d815187c1517340fc510d36b86ff9cc}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!add\_gate@{add\_gate}}
+\index{add\_gate@{add\_gate}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{add\_gate()}{add\_gate()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+add\+\_\+gate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Adds a new gate at the specified scene coordinates.
+@param x The x-coordinate (scene units).
+@param y The y-coordinate (scene units).
+@details Converts the scene position to grid coordinates, creates a Gate object (with default
+         rotation, type, and difficulty), updates the linked list, creates the graphical item and
+         its label, and updates the arrows.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a1c2407e615a6006bbb959fe5be902c59}\label{classobstacle__course__tool_1_1_level_editor_a1c2407e615a6006bbb959fe5be902c59}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!change\_selected\_gate\_difficulty@{change\_selected\_gate\_difficulty}}
+\index{change\_selected\_gate\_difficulty@{change\_selected\_gate\_difficulty}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{change\_selected\_gate\_difficulty()}{change\_selected\_gate\_difficulty()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+change\+\_\+selected\+\_\+gate\+\_\+difficulty (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Changes the difficulty of the selected gate.
+@details Cycles the gate's difficulty value (1 to 3), updates the label to show the new difficulty
+         (in Roman numerals), and refreshes the gate list widget.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a62e9f383e3daa9cc9a0aef4825ba1ce0}\label{classobstacle__course__tool_1_1_level_editor_a62e9f383e3daa9cc9a0aef4825ba1ce0}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!change\_selected\_gate\_type@{change\_selected\_gate\_type}}
+\index{change\_selected\_gate\_type@{change\_selected\_gate\_type}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{change\_selected\_gate\_type()}{change\_selected\_gate\_type()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+change\+\_\+selected\+\_\+gate\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Changes the type of the selected gate.
+@details Cycles through the available gate types (0, 1, 2), removes the current graphical representation,
+         creates a new one with the updated type, reattaches the label, and updates the selection state.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a5e77d0a853b1e4cbd6930cb8c07e18b3}\label{classobstacle__course__tool_1_1_level_editor_a5e77d0a853b1e4cbd6930cb8c07e18b3}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!delete\_current\_level@{delete\_current\_level}}
+\index{delete\_current\_level@{delete\_current\_level}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{delete\_current\_level()}{delete\_current\_level()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+delete\+\_\+current\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Deletes the currently loaded level.
+@details Confirms deletion with the user, removes the level from course data and the levels menu,
+         clears the scene, and loads another level if available.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_ac92a26c29cb91b8dbe1e0021e72205ad}\label{classobstacle__course__tool_1_1_level_editor_ac92a26c29cb91b8dbe1e0021e72205ad}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!difficulty\_to\_roman@{difficulty\_to\_roman}}
+\index{difficulty\_to\_roman@{difficulty\_to\_roman}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{difficulty\_to\_roman()}{difficulty\_to\_roman()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+difficulty\+\_\+to\+\_\+roman (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{difficulty }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Converts a numeric difficulty level to a Roman numeral.
+@param difficulty The difficulty level (1, 2, or 3).
+@return A string representing the difficulty as a Roman numeral.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a818952fb88ddda37d65b3884276500c0}\label{classobstacle__course__tool_1_1_level_editor_a818952fb88ddda37d65b3884276500c0}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!draw\_grid@{draw\_grid}}
+\index{draw\_grid@{draw\_grid}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{draw\_grid()}{draw\_grid()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+draw\+\_\+grid (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Draws the grid on the scene.
+@details Uses the floor dimensions and a fixed grid size to draw rectangular cells and
+         axis labels on the scene.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a810aa174af9a68230c366371b5e654ff}\label{classobstacle__course__tool_1_1_level_editor_a810aa174af9a68230c366371b5e654ff}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!eventFilter@{eventFilter}}
+\index{eventFilter@{eventFilter}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{eventFilter()}{eventFilter()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+event\+Filter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{source,  }\item[{}]{event }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Filters events for the graphics view.
+@param source The source widget of the event.
+@param event The event to be processed.
+@return The result of the event processing.
+@details Determines if the mouse click should select an existing gate or add a new one, snapping
+         positions to the grid.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_afa4920e0e5b8e5e6210b209dc3cf45ee}\label{classobstacle__course__tool_1_1_level_editor_afa4920e0e5b8e5e6210b209dc3cf45ee}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!export\_course@{export\_course}}
+\index{export\_course@{export\_course}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{export\_course()}{export\_course()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+export\+\_\+course (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Exports the current course to a JSON file.
+@details Saves the current level to course data and prompts the user for a filename.
+         Then writes the course data (including levels and gates) to the JSON file.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a2bc35152fe68c4226e3fe30e434d3968}\label{classobstacle__course__tool_1_1_level_editor_a2bc35152fe68c4226e3fe30e434d3968}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!find\_gate\_item@{find\_gate\_item}}
+\index{find\_gate\_item@{find\_gate\_item}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{find\_gate\_item()}{find\_gate\_item()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+find\+\_\+gate\+\_\+item (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{gate }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Finds the graphical item corresponding to a given gate.
+@param gate The Gate object to locate.
+@return The DraggableGateItem corresponding to the gate, or None if not found.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a891389179d81e75626b87d9a9ffb1c04}\label{classobstacle__course__tool_1_1_level_editor_a891389179d81e75626b87d9a9ffb1c04}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!get\_gate\_entry\_exit\_point@{get\_gate\_entry\_exit\_point}}
+\index{get\_gate\_entry\_exit\_point@{get\_gate\_entry\_exit\_point}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{get\_gate\_entry\_exit\_point()}{get\_gate\_entry\_exit\_point()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+get\+\_\+gate\+\_\+entry\+\_\+exit\+\_\+point (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{gate\+\_\+item,  }\item[{}]{entry = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Calculates the entry or exit point for a gate based on its rotation.
+@param gate_item The DraggableGateItem to compute for.
+@param entry True to calculate the entry point; False for the exit point.
+@return A QPointF representing the calculated point.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a33e16fcc27e3efce4f5ada09d0e1b1ee}\label{classobstacle__course__tool_1_1_level_editor_a33e16fcc27e3efce4f5ada09d0e1b1ee}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!highlight\_selected\_gate\_in\_list@{highlight\_selected\_gate\_in\_list}}
+\index{highlight\_selected\_gate\_in\_list@{highlight\_selected\_gate\_in\_list}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{highlight\_selected\_gate\_in\_list()}{highlight\_selected\_gate\_in\_list()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+highlight\+\_\+selected\+\_\+gate\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{selected\+\_\+gate }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Highlights the gate in the list widget that corresponds to the selected gate.
+@param selected_gate The Gate object that is selected.
+@details Iterates through the list items and sets the selection state to match the provided gate.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aa9f137eecbc5891404a7c3d6c471a1ad}\label{classobstacle__course__tool_1_1_level_editor_aa9f137eecbc5891404a7c3d6c471a1ad}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!import\_course@{import\_course}}
+\index{import\_course@{import\_course}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{import\_course()}{import\_course()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+import\+\_\+course (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Imports a course from a JSON file.
+@details Opens a file dialog to select a JSON file. Loads the file, verifies the structure,
+         and updates the course data and levels menu accordingly.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_af97dfb0ce9b666c56325e13a71f1681b}\label{classobstacle__course__tool_1_1_level_editor_af97dfb0ce9b666c56325e13a71f1681b}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!initUI@{initUI}}
+\index{initUI@{initUI}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{initUI()}{initUI()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+init\+UI (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Initializes the user interface.
+@details Sets up the menu bar, graphics view, splitter layout, list widget for gates,
+         and connects signals for interactivity.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_ab16d4e91f99fccc7c24b5053cfc31ca5}\label{classobstacle__course__tool_1_1_level_editor_ab16d4e91f99fccc7c24b5053cfc31ca5}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!load\_level@{load\_level}}
+\index{load\_level@{load\_level}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{load\_level()}{load\_level()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+load\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{level\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Loads a level from a JSON file.
+@param level_name The name of the level to load.
+@details Saves the current level and loads the specified level from a temporary JSON file.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aa5a84017f30a849f52662e49dc5ac72a}\label{classobstacle__course__tool_1_1_level_editor_aa5a84017f30a849f52662e49dc5ac72a}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!load\_level\_from\_course\_data@{load\_level\_from\_course\_data}}
+\index{load\_level\_from\_course\_data@{load\_level\_from\_course\_data}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{load\_level\_from\_course\_data()}{load\_level\_from\_course\_data()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+load\+\_\+level\+\_\+from\+\_\+course\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{level\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Loads a level from the course data by its name.
+@param level_name The name of the level to load.
+@details Clears the current scene, redraws the grid, initializes the gate linked list,
+         and loads each gate (with its graphical representation) from the stored data.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_ad54e3098280d9691379f53c5b946d86c}\label{classobstacle__course__tool_1_1_level_editor_ad54e3098280d9691379f53c5b946d86c}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!load\_level\_from\_json@{load\_level\_from\_json}}
+\index{load\_level\_from\_json@{load\_level\_from\_json}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{load\_level\_from\_json()}{load\_level\_from\_json()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+load\+\_\+level\+\_\+from\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{level\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Loads a level from a temporary JSON file.
+@param level_name The name of the level to load.
+@details Reads 'temporary_levels.json', finds the specified level, and updates the scene and gate linked list.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a649480aa98ef42a1533bdb614cd69462}\label{classobstacle__course__tool_1_1_level_editor_a649480aa98ef42a1533bdb614cd69462}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!new\_course@{new\_course}}
+\index{new\_course@{new\_course}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{new\_course()}{new\_course()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+new\+\_\+course (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Creates a new course by prompting for floor dimensions.
+@details Uses QInputDialog to get floor width and height, clears the scene,
+         draws a new grid, and automatically creates the first level.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a6c97f88eb39c2015e638ff3b6bad046b}\label{classobstacle__course__tool_1_1_level_editor_a6c97f88eb39c2015e638ff3b6bad046b}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!new\_level@{new\_level}}
+\index{new\_level@{new\_level}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{new\_level()}{new\_level()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+new\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Creates a new level.
+@details Prompts the user for a level name, clears the scene, initializes an empty gate linked
+         list, and adds the new level to the course data and levels menu.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a9597eca2fa38862aeee994d2b09f986a}\label{classobstacle__course__tool_1_1_level_editor_a9597eca2fa38862aeee994d2b09f986a}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!on\_gate\_list\_selection\_changed@{on\_gate\_list\_selection\_changed}}
+\index{on\_gate\_list\_selection\_changed@{on\_gate\_list\_selection\_changed}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{on\_gate\_list\_selection\_changed()}{on\_gate\_list\_selection\_changed()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+on\+\_\+gate\+\_\+list\+\_\+selection\+\_\+changed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{current,  }\item[{}]{previous }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Updates the selected gate when the user changes selection in the list widget.
+@param current The currently selected QListWidgetItem.
+@param previous The previously selected QListWidgetItem.
+@details Deselects the previous gate (resetting its color) and highlights the newly selected gate
+         in the graphical view.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aa35baac7262225fa8d4557da8c1f2f2a}\label{classobstacle__course__tool_1_1_level_editor_aa35baac7262225fa8d4557da8c1f2f2a}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!on\_gate\_stack\_changed@{on\_gate\_stack\_changed}}
+\index{on\_gate\_stack\_changed@{on\_gate\_stack\_changed}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{on\_gate\_stack\_changed()}{on\_gate\_stack\_changed()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+on\+\_\+gate\+\_\+stack\+\_\+changed (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Handles reordering of gates when the gate list widget is modified.
+@details Updates the gate linked list based on the new order from the list widget, clears and
+         redraws the scene, and updates the arrow paths.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a501f5aa84af1ac0606caf27b2b8f7411}\label{classobstacle__course__tool_1_1_level_editor_a501f5aa84af1ac0606caf27b2b8f7411}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!refresh\_gate\_stack\_list@{refresh\_gate\_stack\_list}}
+\index{refresh\_gate\_stack\_list@{refresh\_gate\_stack\_list}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{refresh\_gate\_stack\_list()}{refresh\_gate\_stack\_list()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+refresh\+\_\+gate\+\_\+stack\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Refreshes the gate list widget.
+@details Clears and repopulates the list widget with the current gate data (including updated IDs,
+         positions, and difficulty in Roman numeral form).
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a2eef9188e9f67f9e5e75181e59813c35}\label{classobstacle__course__tool_1_1_level_editor_a2eef9188e9f67f9e5e75181e59813c35}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!remove\_selected\_gate@{remove\_selected\_gate}}
+\index{remove\_selected\_gate@{remove\_selected\_gate}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{remove\_selected\_gate()}{remove\_selected\_gate()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+remove\+\_\+selected\+\_\+gate (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Removes the currently selected gate.
+@details Deletes the gate from the linked list, removes its graphical item (and label) from the scene,
+         refreshes the gate list widget, and updates the arrow connections.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aaac4bf6c234f5dc2df5f227cbe60650c}\label{classobstacle__course__tool_1_1_level_editor_aaac4bf6c234f5dc2df5f227cbe60650c}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!rotate\_gate\_left@{rotate\_gate\_left}}
+\index{rotate\_gate\_left@{rotate\_gate\_left}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{rotate\_gate\_left()}{rotate\_gate\_left()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+rotate\+\_\+gate\+\_\+left (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Rotates the selected gate 45 degrees counterclockwise.
+@details Adjusts the gate's rotation property, updates its graphical rotation, refreshes the gate list,
+         and updates the arrows.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aa1203bae332bb58ba9587989a588b454}\label{classobstacle__course__tool_1_1_level_editor_aa1203bae332bb58ba9587989a588b454}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!rotate\_gate\_right@{rotate\_gate\_right}}
+\index{rotate\_gate\_right@{rotate\_gate\_right}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{rotate\_gate\_right()}{rotate\_gate\_right()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+rotate\+\_\+gate\+\_\+right (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Rotates the selected gate 45 degrees clockwise.
+@details Adjusts the gate's rotation property, updates its graphical rotation, refreshes the gate list,
+         and updates the arrows.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a92c44f218ea020f821b0d503c2e26853}\label{classobstacle__course__tool_1_1_level_editor_a92c44f218ea020f821b0d503c2e26853}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!save\_all\_levels\_to\_json@{save\_all\_levels\_to\_json}}
+\index{save\_all\_levels\_to\_json@{save\_all\_levels\_to\_json}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{save\_all\_levels\_to\_json()}{save\_all\_levels\_to\_json()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+save\+\_\+all\+\_\+levels\+\_\+to\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Saves all levels to a temporary JSON file.
+@details Iterates through each level in the levels menu, collects gate data, and writes the data
+         to 'temporary_levels.json'.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_aef0e5819a49bcfb2e11d0b82ec6152b6}\label{classobstacle__course__tool_1_1_level_editor_aef0e5819a49bcfb2e11d0b82ec6152b6}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!save\_current\_level\_to\_course\_data@{save\_current\_level\_to\_course\_data}}
+\index{save\_current\_level\_to\_course\_data@{save\_current\_level\_to\_course\_data}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{save\_current\_level\_to\_course\_data()}{save\_current\_level\_to\_course\_data()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+save\+\_\+current\+\_\+level\+\_\+to\+\_\+course\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Saves the current level data to the course data structure.
+@details Iterates over the linked list of gates, builds a dictionary for the level (including
+         gate properties like id, coordinates, rotation, type, and difficulty), and updates the
+         course data.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a58f034b3447d2d9aa3220ff5514d9d5c}\label{classobstacle__course__tool_1_1_level_editor_a58f034b3447d2d9aa3220ff5514d9d5c}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!set\_level\_title@{set\_level\_title}}
+\index{set\_level\_title@{set\_level\_title}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{set\_level\_title()}{set\_level\_title()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+set\+\_\+level\+\_\+title (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{level\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Sets the level title in the scene.
+@param level_name The name of the level to display.
+@details Removes any existing title and creates a new title text item positioned above the grid.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_ad0c0c9751decf0d83f11aed948acef03}\label{classobstacle__course__tool_1_1_level_editor_ad0c0c9751decf0d83f11aed948acef03}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!update\_arrows@{update\_arrows}}
+\index{update\_arrows@{update\_arrows}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{update\_arrows()}{update\_arrows()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+update\+\_\+arrows (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Updates the arrow path connecting the gates.
+@details Removes any existing arrows, calculates entry and exit points for the gates,
+         creates a smooth QPainterPath between them, and adds it to the scene.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classobstacle__course__tool_1_1_level_editor_a5c2d821feb58f101e439e1c1788cf1a9}\label{classobstacle__course__tool_1_1_level_editor_a5c2d821feb58f101e439e1c1788cf1a9}} 
+\index{obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}!update\_gate\_rotation@{update\_gate\_rotation}}
+\index{update\_gate\_rotation@{update\_gate\_rotation}!obstacle\_course\_tool.LevelEditor@{obstacle\_course\_tool.LevelEditor}}
+\doxysubsubsection{\texorpdfstring{update\_gate\_rotation()}{update\_gate\_rotation()}}
+{\footnotesize\ttfamily def obstacle\+\_\+course\+\_\+tool.\+Level\+Editor.\+update\+\_\+gate\+\_\+rotation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{gate\+\_\+item }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Updates the rotation of a given gate's graphical item.
+@param gate_item The DraggableGateItem to update.
+@details Sets the item's rotation based on its stored rotation value.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{obstacle__course__tool_8py}{obstacle\+\_\+course\+\_\+tool.\+py}}\end{DoxyCompactItemize}
