@@ -1,3 +1,12 @@
+## @file obstacle_course_tool.py
+## @brief Obstacle Course Level Editor.
+## @details
+##  This file implements a PyQt5-based level editor for designing obstacle courses.
+##  It provides functionality for creating new courses and levels, importing and exporting
+##  course data as JSON, adding and modifying gates (with types and difficulty levels), and
+##  managing the graphical scene including grid drawing and gate interconnections.
+
+# IMPORTS
 import sys
 from PyQt5.QtWidgets import QGraphicsEllipseItem, QFileDialog, QGraphicsPathItem, QGraphicsItemGroup, QAbstractItemView, QPushButton, QHBoxLayout, QListWidget, QListWidgetItem, QSplitter, QApplication, QMainWindow, QGraphicsLineItem, QGraphicsView, QGraphicsScene, QGraphicsRectItem, QVBoxLayout, QWidget, QGraphicsItem, QGraphicsTextItem, QMenuBar, QAction, QInputDialog
 from PyQt5.QtGui import QPen, QBrush, QPainterPath
@@ -9,8 +18,16 @@ import json
 import os
 
 
+## 
+#  @brief Main editor class for creating and editing obstacle courses.
+#  @details Provides methods to create new courses and levels, import/export JSON data,
+#           add and modify gates, and update the visual scene.
 class LevelEditor(QMainWindow):
     def __init__(self):
+        """
+        @brief Initializes the LevelEditor.
+        @details Sets up the window title, geometry, course data, and initializes the UI.
+        """
         super().__init__()
         self.setWindowTitle("Obstacle Course Level Editor")
         self.setGeometry(100, 100, 1000, 800)
@@ -27,6 +44,11 @@ class LevelEditor(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        """
+        @brief Initializes the user interface.
+        @details Sets up the menu bar, graphics view, splitter layout, list widget for gates,
+                 and connects signals for interactivity.
+        """
         # Menu bar setup
         menubar = self.menuBar()
         file_menu = menubar.addMenu("File")
@@ -184,6 +206,12 @@ class LevelEditor(QMainWindow):
 
 
     def new_course(self):
+        """
+        @brief Creates a new course by prompting for floor dimensions.
+        @details Uses QInputDialog to get floor width and height, clears the scene,
+                 draws a new grid, and automatically creates the first level.
+        """
+        # new_course code
         floor_width, ok_width = QInputDialog.getInt(self, "New Course", "Enter the floor width:")
         if not ok_width:
             return
@@ -200,6 +228,13 @@ class LevelEditor(QMainWindow):
         self.new_level()  # Automatically create the first level
        
     def import_course(self):
+        """
+        @brief Imports a course from a JSON file.
+        @details Opens a file dialog to select a JSON file. Loads the file, verifies the structure,
+                 and updates the course data and levels menu accordingly.
+        """
+        # import_course code
+        
         # Prompt the user to select a JSON file to import
         options = QFileDialog.Options()
         filename, _ = QFileDialog.getOpenFileName(self, "Import Course", "", "JSON Files (*.json);;All Files (*)", options=options)
@@ -238,6 +273,13 @@ class LevelEditor(QMainWindow):
 
 
     def export_course(self):
+        """
+        @brief Exports the current course to a JSON file.
+        @details Saves the current level to course data and prompts the user for a filename.
+                 Then writes the course data (including levels and gates) to the JSON file.
+        """
+        # export_course code
+        
         # Save the current level before exporting
         if self.course_created and hasattr(self, 'level_name'):
             self.save_current_level_to_course_data()
@@ -257,6 +299,14 @@ class LevelEditor(QMainWindow):
 
 
     def save_current_level_to_course_data(self):
+        """
+        @brief Saves the current level data to the course data structure.
+        @details Iterates over the linked list of gates, builds a dictionary for the level (including
+                 gate properties like id, coordinates, rotation, type, and difficulty), and updates the
+                 course data.
+        """
+        # save_current_level_to_course_data code
+        
         # Construct the data structure for the current level
         level_data = {
             "levelName": self.level_name,
@@ -291,6 +341,14 @@ class LevelEditor(QMainWindow):
             self.course_data["levels"].append(level_data)
            
     def load_level_from_course_data(self, level_name):
+        """
+        @brief Loads a level from the course data by its name.
+        @param level_name The name of the level to load.
+        @details Clears the current scene, redraws the grid, initializes the gate linked list,
+                 and loads each gate (with its graphical representation) from the stored data.
+        """
+        # load_level_from_course_data code
+        
         # Save the current level before loading a new one
         if self.course_created and hasattr(self, 'level_name'):
             self.save_current_level_to_course_data()
@@ -364,6 +422,13 @@ class LevelEditor(QMainWindow):
 
 
     def draw_grid(self):
+        """
+        @brief Draws the grid on the scene.
+        @details Uses the floor dimensions and a fixed grid size to draw rectangular cells and
+                 axis labels on the scene.
+        """
+        # draw_grid code
+        
         grid_size = 20
         # Draw the grid and axis labels
         for x in range(0, self.floor_width * grid_size, grid_size):
@@ -387,8 +452,12 @@ class LevelEditor(QMainWindow):
            
     def update_arrows(self):
         """
-        Draws a smooth path between the gates to indicate the order, ensuring the path passes through the entry and exit points of all gates.
+        @brief Updates the arrow path connecting the gates.
+        @details Removes any existing arrows, calculates entry and exit points for the gates,
+                 creates a smooth QPainterPath between them, and adds it to the scene.
         """
+        # update_arrows code
+        
         # First, remove all existing arrows
         for arrow in self.gate_list.arrows:
             self.scene.removeItem(arrow)
@@ -444,6 +513,13 @@ class LevelEditor(QMainWindow):
 
 
     def new_level(self):
+        """
+        @brief Creates a new level.
+        @details Prompts the user for a level name, clears the scene, initializes an empty gate linked
+                 list, and adds the new level to the course data and levels menu.
+        """
+        # new_level code
+        
         # Save the current level before creating a new one
         if self.course_created and hasattr(self, 'level_name'):
             self.save_current_level_to_course_data()
@@ -496,6 +572,13 @@ class LevelEditor(QMainWindow):
 
 
     def load_level(self, level_name):
+        """
+        @brief Loads a level from a JSON file.
+        @param level_name The name of the level to load.
+        @details Saves the current level and loads the specified level from a temporary JSON file.
+        """
+        # load_level code
+        
         # Save the current level before loading a new one
         if self.course_created and hasattr(self, 'level_name'):
             self.save_all_levels_to_json()
@@ -504,6 +587,13 @@ class LevelEditor(QMainWindow):
         self.load_level_from_json(level_name)
         
     def delete_current_level(self):
+        """
+        @brief Deletes the currently loaded level.
+        @details Confirms deletion with the user, removes the level from course data and the levels menu,
+                 clears the scene, and loads another level if available.
+        """
+        # delete_current_level code
+        
         if not self.course_created or not hasattr(self, 'level_name'):
             QMessageBox.warning(self, "Warning", "No level is currently loaded to delete.")
             return
@@ -546,6 +636,16 @@ class LevelEditor(QMainWindow):
 
 
     def add_gate(self, x, y):
+        """
+        @brief Adds a new gate at the specified scene coordinates.
+        @param x The x-coordinate (scene units).
+        @param y The y-coordinate (scene units).
+        @details Converts the scene position to grid coordinates, creates a Gate object (with default
+                 rotation, type, and difficulty), updates the linked list, creates the graphical item and
+                 its label, and updates the arrows.
+        """
+        # add_gate code
+        
         grid_size = 20
         grid_x = x // grid_size
         grid_y = y // grid_size
@@ -578,9 +678,11 @@ class LevelEditor(QMainWindow):
       
     def on_gate_stack_changed(self):
         """
-        Called when the gate order is changed by dragging in the gate stack.
-        This method will update the gate linked list and redraw gates and arrows.
+        @brief Handles reordering of gates when the gate list widget is modified.
+        @details Updates the gate linked list based on the new order from the list widget, clears and
+                 redraws the scene, and updates the arrow paths.
         """
+        # on_gate_stack_changed code
         new_gate_order = []
         for index in range(self.gate_stack_list.count()):
             item = self.gate_stack_list.item(index)
@@ -644,9 +746,12 @@ class LevelEditor(QMainWindow):
 
     def refresh_gate_stack_list(self):
         """
-        Refresh the gate stack list widget to update the information (x, z, rotation)
-        for each gate in the linked list and ensure gate IDs are consistent.
+        @brief Refreshes the gate list widget.
+        @details Clears and repopulates the list widget with the current gate data (including updated IDs,
+                 positions, and difficulty in Roman numeral form).
         """
+        # refresh_gate_stack_list code
+        
         self.gate_stack_list.clear()
         current = self.gate_list.head
         index = 0
@@ -664,11 +769,12 @@ class LevelEditor(QMainWindow):
 
     def highlight_selected_gate_in_list(self, selected_gate):
         """
-        Highlights the gate in the list that matches the selected gate.
-        
-        Parameters:
-            selected_gate (Gate): The gate object that has been selected.
+        @brief Highlights the gate in the list widget that corresponds to the selected gate.
+        @param selected_gate The Gate object that is selected.
+        @details Iterates through the list items and sets the selection state to match the provided gate.
         """
+        # highlight_selected_gate_in_list code
+        
         for index in range(self.gate_stack_list.count()):
             item = self.gate_stack_list.item(index)
             gate = item.data(Qt.UserRole)
@@ -680,13 +786,14 @@ class LevelEditor(QMainWindow):
                 
     def on_gate_list_selection_changed(self, current, previous):
         """
-        Called when the user selects a gate in the list widget.
-        This method will select the corresponding gate in the graphical view.
-        
-        Parameters:
-            current (QListWidgetItem): The currently selected list item.
-            previous (QListWidgetItem): The previously selected list item.
+        @brief Updates the selected gate when the user changes selection in the list widget.
+        @param current The currently selected QListWidgetItem.
+        @param previous The previously selected QListWidgetItem.
+        @details Deselects the previous gate (resetting its color) and highlights the newly selected gate
+                 in the graphical view.
         """
+        # on_gate_list_selection_changed code
+        
         if previous and self.selected_gate_item:
             # Deselect the previously selected gate, if it exists
             try:
@@ -709,8 +816,12 @@ class LevelEditor(QMainWindow):
 
     def remove_selected_gate(self):
         """
-        Removes the currently selected gate from the scene, list, and linked list.
+        @brief Removes the currently selected gate.
+        @details Deletes the gate from the linked list, removes its graphical item (and label) from the scene,
+                 refreshes the gate list widget, and updates the arrow connections.
         """
+        # remove_selected_gate code
+        
         if not self.selected_gate_item:
             return  # No gate is selected
 
@@ -744,6 +855,13 @@ class LevelEditor(QMainWindow):
         self.update_arrows()
 
     def rotate_gate_left(self):
+        """
+        @brief Rotates the selected gate 45 degrees counterclockwise.
+        @details Adjusts the gate's rotation property, updates its graphical rotation, refreshes the gate list,
+                 and updates the arrows.
+        """
+        # rotate_gate_left code
+        
         if self.selected_gate_item:
             self.selected_gate_item.gate.rotation -= 45
             self.selected_gate_item.gate.rotation %= 360
@@ -752,6 +870,13 @@ class LevelEditor(QMainWindow):
             self.update_arrows()
 
     def rotate_gate_right(self):
+        """
+        @brief Rotates the selected gate 45 degrees clockwise.
+        @details Adjusts the gate's rotation property, updates its graphical rotation, refreshes the gate list,
+                 and updates the arrows.
+        """
+        # rotate_gate_right code
+        
         if self.selected_gate_item:
             self.selected_gate_item.gate.rotation += 45
             self.selected_gate_item.gate.rotation %= 360
@@ -760,6 +885,13 @@ class LevelEditor(QMainWindow):
             self.update_arrows()
             
     def change_selected_gate_type(self):
+        """
+        @brief Changes the type of the selected gate.
+        @details Cycles through the available gate types (0, 1, 2), removes the current graphical representation,
+                 creates a new one with the updated type, reattaches the label, and updates the selection state.
+        """
+        # change_selected_gate_type code
+        
         if not self.selected_gate_item:
             return  # No gate is selected
 
@@ -796,6 +928,13 @@ class LevelEditor(QMainWindow):
 
 
     def change_selected_gate_difficulty(self):
+        """
+        @brief Changes the difficulty of the selected gate.
+        @details Cycles the gate's difficulty value (1 to 3), updates the label to show the new difficulty
+                 (in Roman numerals), and refreshes the gate list widget.
+        """
+        # change_selected_gate_difficulty code
+        
         if not self.selected_gate_item:
             return  # No gate is selected
         # Cycle through difficulty levels: 1 -> 2 -> 3 -> 1
@@ -814,11 +953,12 @@ class LevelEditor(QMainWindow):
 
     def update_gate_rotation(self, gate_item):
         """
-        Updates the rotation of a gate in the graphical view.
-        
-        Parameters:
-            gate_item (DraggableGateItem): The gate item to update.
+        @brief Updates the rotation of a given gate's graphical item.
+        @param gate_item The DraggableGateItem to update.
+        @details Sets the item's rotation based on its stored rotation value.
         """
+        # update_gate_rotation code
+        
         # Apply rotation transformation to the gate item
         gate_item.setRotation(gate_item.gate.rotation)
 
@@ -826,6 +966,16 @@ class LevelEditor(QMainWindow):
 
 
     def eventFilter(self, source, event):
+        """
+        @brief Filters events for the graphics view.
+        @param source The source widget of the event.
+        @param event The event to be processed.
+        @return The result of the event processing.
+        @details Determines if the mouse click should select an existing gate or add a new one, snapping
+                 positions to the grid.
+        """
+        # eventFilter code
+        
         if event.type() == event.MouseButtonPress and source == self.view.viewport() and self.course_created:
             if event.button() == Qt.LeftButton:
                 # Get mouse click position and snap to grid
@@ -877,14 +1027,12 @@ class LevelEditor(QMainWindow):
     #helper
     def find_gate_item(self, gate):
         """
-        Finds the DraggableGateItem in the scene corresponding to the given gate.
-        
-        Parameters:
-            gate (Gate): The gate object to find.
-            
-        Returns:
-            DraggableGateItem: The corresponding gate item, or None if not found.
+        @brief Finds the graphical item corresponding to a given gate.
+        @param gate The Gate object to locate.
+        @return The DraggableGateItem corresponding to the gate, or None if not found.
         """
+        # find_gate_item code
+        
         for item in self.scene.items():
             if isinstance(item, DraggableGateItem) and item.gate == gate:
                 return item
@@ -892,15 +1040,13 @@ class LevelEditor(QMainWindow):
     
     def get_gate_entry_exit_point(self, gate_item, entry=True):
         """
-        Gets the entry or exit point for a gate, based on its rotation.
-        
-        Parameters:
-            gate_item (DraggableGateItem): The gate item to get the point for.
-            entry (bool): Whether to get the entry point (True) or exit point (False).
-            
-        Returns:
-            QPointF: The calculated entry or exit point.
+        @brief Calculates the entry or exit point for a gate based on its rotation.
+        @param gate_item The DraggableGateItem to compute for.
+        @param entry True to calculate the entry point; False for the exit point.
+        @return A QPointF representing the calculated point.
         """
+        # get_gate_entry_exit_point code
+        
         # Get the center position of the gate
         rect = gate_item.sceneBoundingRect()
         center_x = rect.center().x()
@@ -924,6 +1070,13 @@ class LevelEditor(QMainWindow):
         return QPointF(offset_x, offset_y)
     
     def save_all_levels_to_json(self):
+        """
+        @brief Saves all levels to a temporary JSON file.
+        @details Iterates through each level in the levels menu, collects gate data, and writes the data
+                 to 'temporary_levels.json'.
+        """
+        # save_all_levels_to_json code
+        
         # Save all levels to a temporary JSON file
         try:
             # Construct the data structure to save all levels
@@ -970,6 +1123,13 @@ class LevelEditor(QMainWindow):
 
             
     def load_level_from_json(self, level_name):
+        """
+        @brief Loads a level from a temporary JSON file.
+        @param level_name The name of the level to load.
+        @details Reads 'temporary_levels.json', finds the specified level, and updates the scene and gate linked list.
+        """
+        # load_level_from_json code
+        
         # Load levels from the JSON file
         if not os.path.exists('temporary_levels.json'):
             print("No levels have been saved yet.")
@@ -1040,6 +1200,13 @@ class LevelEditor(QMainWindow):
             print(f"Error loading level from JSON: {e}")
             
     def set_level_title(self, level_name):
+        """
+        @brief Sets the level title in the scene.
+        @param level_name The name of the level to display.
+        @details Removes any existing title and creates a new title text item positioned above the grid.
+        """
+        # set_level_title code
+        
         # Check if the title exists and remove it from the scene
         if self.level_title is not None:
             try:
@@ -1060,15 +1227,37 @@ class LevelEditor(QMainWindow):
 
 
     def difficulty_to_roman(self, difficulty):
+        """
+        @brief Converts a numeric difficulty level to a Roman numeral.
+        @param difficulty The difficulty level (1, 2, or 3).
+        @return A string representing the difficulty as a Roman numeral.
+        """
+        # difficulty_to_roman code
+        
         mapping = {1: "I", 2: "II", 3: "III"}
         return mapping.get(difficulty, "I")
 
 
 
 
-
+## 
+#  @brief A graphical item representing a gate that can be moved and rotated.
+#  @details This item encapsulates the visual representation of a gate, including its shape based
+#           on type and a label that displays its gate id and difficulty.
 class DraggableGateItem(QGraphicsItemGroup):
     def __init__(self, gate, grid_size, floor_width, floor_height, editor_ref, *args, **kwargs):
+        """
+        @brief Initializes a draggable gate item.
+        @param gate The Gate object associated with this item.
+        @param grid_size The size of the grid cell.
+        @param floor_width The width of the floor in grid cells.
+        @param floor_height The height of the floor in grid cells.
+        @param editor_ref Reference to the LevelEditor instance.
+        @details Sets up the graphical representation (bars, circle, or square) based on the gate type,
+                 positions the item on the scene, and configures interaction flags.
+        """
+        # __init__ code
+        
         super().__init__(*args, **kwargs)
 
         # Store gate properties and reference to main editor
@@ -1139,11 +1328,12 @@ class DraggableGateItem(QGraphicsItemGroup):
 
     def set_gate_color(self, color):
         """
-        Sets the color of the gate depending on its type.
-        
-        Parameters:
-            color (QColor): The color to set for the gate elements.
+        @brief Sets the color of the gate's graphical components.
+        @param color A QColor value to apply.
+        @details Changes the brush color for bars, circle, or square, depending on the gate's type.
         """
+        # set_gate_color code
+        
         if hasattr(self, 'bar1') and hasattr(self, 'bar2'):
             # If the gate has bars, update their color
             self.bar1.setBrush(QBrush(color))
@@ -1158,9 +1348,12 @@ class DraggableGateItem(QGraphicsItemGroup):
 
     def mousePressEvent(self, event):
         """
-        Handles mouse press events on the gate item.
-        This prevents creating a new gate when clicking on an existing one.
+        @brief Handles mouse press events on the gate item.
+        @param event The mouse event.
+        @details Sets this gate as selected and highlights it by changing its color.
         """
+        # mousePressEvent code
+        
         # Notify the editor that this gate has been selected
         if self.editor_ref.selected_gate_item:
             # Deselect the previously selected gate
@@ -1176,6 +1369,16 @@ class DraggableGateItem(QGraphicsItemGroup):
 
 
     def itemChange(self, change, value):
+        """
+        @brief Processes changes to the item's state, such as position changes.
+        @param change The type of change.
+        @param value The new value associated with the change.
+        @return The updated value (e.g., a snapped position as QPointF).
+        @details Snaps the item to the grid, updates the gate's internal coordinates, refreshes the scene arrows,
+                 and keeps the corresponding gate highlighted in the list.
+        """
+        # itemChange code
+        
         if change == QGraphicsItem.ItemPositionChange and hasattr(self, 'initialized') and self.initialized:
             new_pos = value  # Get the new proposed position directly as QPointF
             # Snap to grid
