@@ -297,6 +297,8 @@ class LevelEditor(QMainWindow):
 
         # Reset selected gate item to avoid accessing deleted objects
         self.selected_gate_item = None
+        
+        self.gate_stack_list.clear()
 
         # Find the level data by name in course_data
         level_data = next((level for level in self.course_data["levels"] if level["levelName"] == level_name), None)
@@ -352,6 +354,8 @@ class LevelEditor(QMainWindow):
             # Set level title
             self.set_level_title(level_name)
 
+            self.course_created = True
+            
             print(f"Loaded level: {level_name}")
 
         else:
@@ -455,6 +459,7 @@ class LevelEditor(QMainWindow):
             return
 
         # Reset selected gate item to avoid accessing deleted objects
+        self.gate_stack_list.clear()
         self.selected_gate_item = None
 
         # Store the new level name
@@ -471,6 +476,8 @@ class LevelEditor(QMainWindow):
         self.scene.clear()
         self.draw_grid()
         self.course_created = True
+        
+        self.refresh_gate_stack_list()
 
         # Add the new level to course_data
         new_level_data = {
@@ -985,6 +992,7 @@ class LevelEditor(QMainWindow):
                 self.level_name = level_data["levelName"]
 
                 # Initialize the linked list with gates
+                self.gate_stack_list.clear()
                 self.gate_list = GateLinkedList()
                 self.gate_counter = len(level_data["gates"])
 
@@ -1023,6 +1031,8 @@ class LevelEditor(QMainWindow):
 
                 # Update arrows to reflect the new configuration
                 self.update_arrows()
+               
+                self.course_created = True
 
                 print(f"Loaded level: {level_name}")
 
